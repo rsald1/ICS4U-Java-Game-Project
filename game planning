@@ -1,0 +1,21 @@
+Family Feud: 
+- Start Page 
+  - should have a button to begin the game
+  - maybe a button for instructions? 
+- Actual Game
+  - Question up top - these could be random with a 
+  - a few defined slots that change to text (for correct answers) 
+  - a thing to show attempts
+  - a text input
+  - Three rounds? 
+  - add a points system? 
+  - have sound for good/bad answers
+- End screen 
+  - points / leaderboard type thing?? 
+    - using files to do that 
+  - 
+
+  
+  
+What sort of *new* thing can I add to it? 
+- sounds? https://mukeshscience.wordpress.com/2014/05/26/adding-audio-to-java/
