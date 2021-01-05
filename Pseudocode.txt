@@ -1,0 +1,19 @@
+Class Title screen
+2 Labels - "Family Feud" and "Rosie Saldanha" 
+3 Buttons:
+Play - close window and open game window (for question 1) (create new object to do so) 
+Rules - close window and open instruction window (create new object) 
+Quit - close window/program
+
+Class Instruction screen
+Labels - "Instruction" and another for text of the rules 
+2 buttons: 
+Play - close widow and create an object for the first question 
+Quit - Close window/program
+
+class End Screen
+Label - "Game Over" + "Score: "
+Text - to output the final score var
+2 buttons: 
+Play - Close window, reopen game, restart game loop - open title screen? 
+Quit - close window/program
