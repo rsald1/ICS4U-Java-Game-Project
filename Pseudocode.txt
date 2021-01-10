@@ -17,3 +17,12 @@ Text - to output the final score var
 2 buttons: 
 Play - when clicked - Close window, reopen game, restart game loop - open title screen? 
 Quit - when clicked -  close window/program
+
+Game screen
+When enter button pressed
+chek text against answers (array) 
+if answer is correct - change number slot to say that, noise, clear answer 
+if answer isn't correct - add strike, noise, clear answer
+  if strikes are all taken up 
+   - change to next quesion
+   - if on last question go to end screen 
