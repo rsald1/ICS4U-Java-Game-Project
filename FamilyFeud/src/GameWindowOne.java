@@ -21,7 +21,7 @@ public class GameWindowOne extends javax.swing.JFrame {
      */
     
     String answer;
-    int p;
+    int p ;
     
     public GameWindowOne() {
         initComponents();
@@ -259,25 +259,56 @@ public class GameWindowOne extends javax.swing.JFrame {
     }
     
     public boolean searching(){
+        /*
+        Boolean a;
         File QA = new File("Q1Ainfo.txt");
         try{
-            Scanner reading = new Scanner(QA);
-            for (int i = 1; i <= 5; i++){
+                Scanner reading = new Scanner(QA);
                 String line = reading.nextLine();
-                boolean a = line.equalsIgnoreCase(answer);
+                a = line.equalsIgnoreCase(answer);
+                p++;
+                System.out.println();
                 if (a = true){ 
                    // System.out.println(i);
                     //p = i;
                     return true;
                 }
 
-            }
+            while (a != true);
         }
         catch (FileNotFoundException e){
             System.out.println("File not found");
         }
         return false;
+        */
+        
+       //attempting a new thing
+       p = 0;
+       Scanner reading = new Scanner(QA);
+       Boolean a;
+       File QA = new File("Q1Ainfo.txt"); 
+       do {
+           try{
+               
+               String line = reading.nextLine();
+               a = line.equalsIgnoreCase(answer);
+               p++;
+               System.out.println(p);
+               if (a = true){
+                   String QaA = "Q1Ainfo.txt";
+                   int position = (QaA.indexOf(answer));
+                   //System.out.println(position);
+                   return true;
+               }
+           }
+           catch (FileNotFoundException e){
+               System.out.println("File not Found");
+           }
+           return false;
+       }
+       while (a != true);
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel answerFive;
