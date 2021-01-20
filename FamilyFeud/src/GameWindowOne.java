@@ -21,6 +21,8 @@ public class GameWindowOne extends javax.swing.JFrame {
      */
     
     String answer;
+    int p;
+    
     public GameWindowOne() {
         initComponents();
     }
@@ -213,8 +215,12 @@ public class GameWindowOne extends javax.swing.JFrame {
         //String answer;
         answer = answerInput.getText();
         boolean c;
-        c = searching();
+        c = searching(); 
         System.out.println(c);
+        if (c = true){
+            System.out.println(p);
+        }
+        
     }//GEN-LAST:event_enterButtonActionPerformed
 
     /**
@@ -259,7 +265,9 @@ public class GameWindowOne extends javax.swing.JFrame {
             for (int i = 1; i <= 5; i++){
                 String line = reading.nextLine();
                 boolean a = line.equalsIgnoreCase(answer);
-                if (a = true){           
+                if (a = true){ 
+                   // System.out.println(i);
+                    //p = i;
                     return true;
                 }
 
