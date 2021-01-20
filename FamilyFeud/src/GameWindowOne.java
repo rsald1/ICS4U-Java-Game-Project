@@ -282,11 +282,12 @@ public class GameWindowOne extends javax.swing.JFrame {
         return false;
         */
         
-       //attempting a new thing
+       /*
        p = 0;
-       Scanner reading = new Scanner(QA);
+       
        Boolean a;
        File QA = new File("Q1Ainfo.txt"); 
+       Scanner reading = new Scanner(QA);
        do {
            try{
                
@@ -307,6 +308,31 @@ public class GameWindowOne extends javax.swing.JFrame {
            return false;
        }
        while (a != true);
+       */
+       
+       boolean a;
+       a = false;
+       File QA = new File("Q1Ainfo.txt");
+       p=0;
+       try{
+           Scanner reading = new Scanner(QA);
+           for (int i = 0;i<=4;i++){
+               String line = reading.nextLine();
+               System.out.println(line);
+               p++;
+               System.out.println(p);
+               System.out.println(answer);
+               a = line.equalsIgnoreCase(answer);
+               System.out.println(a);
+               System.out.println("");
+           }
+           return true;
+       }
+       catch (FileNotFoundException e){
+           System.out.println("File not found");
+       }
+       return false;
+       
     }
 
 
