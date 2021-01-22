@@ -8,6 +8,7 @@
  *
  * @author turtl
  */
+
 public class TitleWindow extends javax.swing.JFrame {
 
     /**
@@ -138,7 +139,7 @@ public class TitleWindow extends javax.swing.JFrame {
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
         this.dispose();
-        GameWindowOne questionOne = new GameWindowOne();
+        GameWindow questionOne = new GameWindow();
         questionOne.setVisible(true);
     }//GEN-LAST:event_playButtonActionPerformed
 
@@ -176,6 +177,7 @@ public class TitleWindow extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
