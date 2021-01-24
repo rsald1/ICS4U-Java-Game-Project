@@ -120,7 +120,7 @@ public class RuleWindow extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
-        GameWindowOne questionOne = new GameWindowOne();
+        GameWindow questionOne = new GameWindow();
         questionOne.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
