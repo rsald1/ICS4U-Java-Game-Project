@@ -12,7 +12,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-//import java.util.InputMismatchException;
 import java.util.Random;
 
 
@@ -32,12 +31,16 @@ public class GameWindow extends javax.swing.JFrame {
     String question;
     int questionNumber;
     public static int finaleScore;
+    File QA = new File("");
+    boolean b;
+    
     public GameWindow() {
         initComponents();
         score = 0;
         strikes = 0;
         question = "";
         questionNumber = 0;
+        b = false;
     }
 
     /**
@@ -259,7 +262,7 @@ public class GameWindow extends javax.swing.JFrame {
         c = searching(); 
         System.out.println(c);
         if (c){
-            correctAnswer();
+            outputCorrectAnswer();
         }
         else{
             incorrectAnswer();
@@ -335,7 +338,7 @@ public class GameWindow extends javax.swing.JFrame {
     }
     public boolean searching(){
        boolean a = false;
-       File QA = new File("");
+       //File QA = new File("");
        switch (questionNumber){
            case 0: 
                QA = new File ("Q1Ainfo.txt");
@@ -377,38 +380,6 @@ public class GameWindow extends javax.swing.JFrame {
        return false;
     }
     
-    public void correctAnswer(){
-    //System.out.println(p);
-    //loop to set 
-            answerInput.setText("");
-            switch (p){
-                case 1:
-                    answerOne.setText("Toothbrush");
-                    score += 100;
-                    break;
-                case 2:
-                    answerTwo.setText("Toothpaste");
-                    score += 200;
-                    break;
-                case 3:
-                    answerThree.setText("Floss");
-                    score += 300;
-                    break;
-                case 4:
-                    answerFour.setText("Vitamins");
-                    score += 400;
-                    break;
-                case 5:
-                    answerFive.setText("Makeup");
-                    score += 500;
-                    break;
-            }
-            scorenumberlabel.setText(String.valueOf(score));
-            if (score >= 1500){
-                endGame();
-            }
-}
-    
     public void incorrectAnswer(){
         answerInput.setText("");
         strikes++;
@@ -432,6 +403,54 @@ public class GameWindow extends javax.swing.JFrame {
         EndWindow endingPage = new EndWindow();
         endingPage.setVisible(true);
     }  
+    
+    public void outputCorrectAnswer(){
+        answerInput.setText("");
+        System.out.println("");
+        String getAnswerText = "";
+       try{
+        Scanner read = new Scanner(QA);
+        for (int i = 1; i<=5; i++){
+            getAnswerText = read.nextLine();
+            System.out.println(getAnswerText);
+            if (p == i){
+                switch (p){
+                    case 1:
+                        answerOne.setText(getAnswerText);
+                        score += 100;
+                        break;
+                    case 2:
+                        answerTwo.setText(getAnswerText);
+                        score += 200;
+                        break;
+                    case 3:
+                        answerThree.setText(getAnswerText);
+                        score += 300;
+                        break;
+                    case 4:
+                        answerFour.setText(getAnswerText);
+                        score += 400;
+                        break;
+                    case 5:
+                        answerFive.setText(getAnswerText);
+                        score += 500;
+                        break;
+                    
+            }
+        }
+            else {
+                continue;
+            }
+       }
+       }
+       catch (FileNotFoundException e){
+           System.out.println(e);
+       }
+       scorenumberlabel.setText(String.valueOf(score));
+            if (score >= 1500){
+                endGame();
+            }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

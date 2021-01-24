@@ -135,7 +135,7 @@ public class EndWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void playAgainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playAgainButtonActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_playAgainButtonActionPerformed
 
     private void quitbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitbuttonActionPerformed

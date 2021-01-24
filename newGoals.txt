@@ -1,9 +1,6 @@
 To do 
 
 Learn how to add sound into program
-Duplicate/copy gameclass to change name 
-randomized question array stuff
-Brainstorm 2-3 new questions for game 
-chaneg up how set text in switch work (https://www.educative.io/edpresso/reading-the-nth-line-from-a-file-in-java  - should tell how to read specific lines from a file)
+change up how set text in switch work (https://www.educative.io/edpresso/reading-the-nth-line-from-a-file-in-java  - should tell how to read specific lines from a file)
 
 adding COMMENTS TO CODE!
