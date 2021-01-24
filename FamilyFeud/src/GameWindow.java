@@ -12,10 +12,12 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-import java.util.InputMismatchException;
+import java.util.Random;
 
 
-public class GameWindowOne extends javax.swing.JFrame {
+public class GameWindow extends javax.swing.JFrame {
+
+    static int finalescore;
 
     /**
      * Creates new form GameWindowOne
@@ -25,11 +27,20 @@ public class GameWindowOne extends javax.swing.JFrame {
     int p ;
     int score;
     int strikes;
+    public String[] questions = {"Bathroom", "Kitchen", "Bedroom", "Car"};
+    String question;
+    int questionNumber;
+    public static int finaleScore;
+    File QA = new File("");
+    boolean b;
     
-    public GameWindowOne() {
+    public GameWindow() {
         initComponents();
         score = 0;
         strikes = 0;
+        question = "";
+        questionNumber = 0;
+        b = false;
     }
 
     /**
@@ -41,8 +52,9 @@ public class GameWindowOne extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        questionOne = new javax.swing.JLabel();
+        questionLabel = new javax.swing.JLabel();
         answerTwo = new javax.swing.JLabel();
         answerOne = new javax.swing.JLabel();
         answerFour = new javax.swing.JLabel();
@@ -56,13 +68,26 @@ public class GameWindowOne extends javax.swing.JFrame {
         numStrikes = new javax.swing.JLabel();
         quitButton = new javax.swing.JButton();
 
+        jButton1.setText("jButton1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(245, 225, 253));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPanel1FocusGained(evt);
+            }
+        });
 
-        questionOne.setFont(new java.awt.Font("Verdana", 0, 26)); // NOI18N
-        questionOne.setText("Q1 : Things you find on the bathroom counter");
+        questionLabel.setFont(new java.awt.Font("Verdana", 0, 26)); // NOI18N
+        questionLabel.setFocusable(false);
+        questionLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         answerTwo.setBackground(new java.awt.Color(1, 1, 1));
         answerTwo.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
@@ -126,7 +151,7 @@ public class GameWindowOne extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(questionOne, javax.swing.GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE)
+                .addComponent(questionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
@@ -160,7 +185,7 @@ public class GameWindowOne extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(questionOne, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(questionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
@@ -237,7 +262,7 @@ public class GameWindowOne extends javax.swing.JFrame {
         c = searching(); 
         System.out.println(c);
         if (c){
-            correctAnswer();
+            outputCorrectAnswer();
         }
         else{
             incorrectAnswer();
@@ -245,6 +270,14 @@ public class GameWindowOne extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_enterButtonActionPerformed
+
+    private void jPanel1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPanel1FocusGained
+        
+    }//GEN-LAST:event_jPanel1FocusGained
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        questionChoice();
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -263,28 +296,63 @@ public class GameWindowOne extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GameWindowOne.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GameWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GameWindowOne.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GameWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GameWindowOne.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GameWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GameWindowOne.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GameWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GameWindowOne().setVisible(true);
+                new GameWindow().setVisible(true);
             }
         });
+        
     }
     
+    public void questionChoice(){
+        Random randomNum = new Random();
+        questionNumber = randomNum.nextInt(4);
+        System.out.println(questionNumber);
+        question = questions[questionNumber];
+        System.out.println(question);
+        switch (questionNumber){
+            case 0:
+                questionLabel.setText("Things found in the Bathroom");
+                break;
+            case 1:
+                questionLabel.setText("Things found in the Kitchen");
+                break;
+            case 2:
+                questionLabel.setText("Things found in the Bedroom");
+                break;
+            case 3:
+                questionLabel.setText("Things found in the Car");
+                break;
+        }
+    }
     public boolean searching(){
-    
        boolean a = false;
-       File QA = new File("Q1Ainfo.txt");
+       //File QA = new File("");
+       switch (questionNumber){
+           case 0: 
+               QA = new File ("Q1Ainfo.txt");
+               break;
+           case 1:
+               QA = new File ("Q2Ainfo.txt");
+               break;
+           case 2:
+               QA = new File ("Q3Ainfo.txt");
+               break;
+           case 3:
+               QA = new File ("Q4Ainfo.txt");
+               break;
+       }
        p = 0;
        try{
            Scanner reading = new Scanner(QA);
@@ -312,37 +380,6 @@ public class GameWindowOne extends javax.swing.JFrame {
        return false;
     }
     
-    public void correctAnswer(){
-    //System.out.println(p);
-            answerInput.setText("");
-            switch (p){
-                case 1:
-                    answerOne.setText("Toothbrush");
-                    score += 100;
-                    break;
-                case 2:
-                    answerTwo.setText("Toothpaste");
-                    score += 200;
-                    break;
-                case 3:
-                    answerThree.setText("Floss");
-                    score += 300;
-                    break;
-                case 4:
-                    answerFour.setText("Vitamins");
-                    score += 400;
-                    break;
-                case 5:
-                    answerFive.setText("Makeup");
-                    score += 500;
-                    break;
-            }
-            scorenumberlabel.setText(String.valueOf(score));
-            if (score >= 1500){
-                endGame();
-            }
-}
-    
     public void incorrectAnswer(){
         answerInput.setText("");
         strikes++;
@@ -361,10 +398,59 @@ public class GameWindowOne extends javax.swing.JFrame {
     }
     
     public void endGame(){
+        finalescore = score;
         this.dispose();
         EndWindow endingPage = new EndWindow();
         endingPage.setVisible(true);
     }  
+    
+    public void outputCorrectAnswer(){
+        answerInput.setText("");
+        System.out.println("");
+        String getAnswerText = "";
+       try{
+        Scanner read = new Scanner(QA);
+        for (int i = 1; i<=5; i++){
+            getAnswerText = read.nextLine();
+            System.out.println(getAnswerText);
+            if (p == i){
+                switch (p){
+                    case 1:
+                        answerOne.setText(getAnswerText);
+                        score += 100;
+                        break;
+                    case 2:
+                        answerTwo.setText(getAnswerText);
+                        score += 200;
+                        break;
+                    case 3:
+                        answerThree.setText(getAnswerText);
+                        score += 300;
+                        break;
+                    case 4:
+                        answerFour.setText(getAnswerText);
+                        score += 400;
+                        break;
+                    case 5:
+                        answerFive.setText(getAnswerText);
+                        score += 500;
+                        break;
+                    
+            }
+        }
+            else {
+                continue;
+            }
+       }
+       }
+       catch (FileNotFoundException e){
+           System.out.println(e);
+       }
+       scorenumberlabel.setText(String.valueOf(score));
+            if (score >= 1500){
+                endGame();
+            }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -375,10 +461,11 @@ public class GameWindowOne extends javax.swing.JFrame {
     private javax.swing.JLabel answerThree;
     private javax.swing.JLabel answerTwo;
     private javax.swing.JButton enterButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelScore;
     private javax.swing.JLabel numStrikes;
-    private javax.swing.JLabel questionOne;
+    private javax.swing.JLabel questionLabel;
     private javax.swing.JButton quitButton;
     private javax.swing.JLabel scorenumberlabel;
     private javax.swing.JLabel strikelabel;

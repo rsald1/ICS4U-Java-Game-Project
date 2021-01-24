@@ -13,6 +13,8 @@ public class EndWindow extends javax.swing.JFrame {
     /**
      * Creates new form EndWindow
      */
+    
+    public int finalScore;
     public EndWindow() {
         initComponents();
     }
@@ -34,6 +36,11 @@ public class EndWindow extends javax.swing.JFrame {
         quitbutton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(245, 225, 253));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -128,12 +135,16 @@ public class EndWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void playAgainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playAgainButtonActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_playAgainButtonActionPerformed
 
     private void quitbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitbuttonActionPerformed
         System.exit(0);
     }//GEN-LAST:event_quitbuttonActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        scoreDisplay();
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -168,6 +179,11 @@ public class EndWindow extends javax.swing.JFrame {
                 new EndWindow().setVisible(true);
             }
         });
+    }
+    
+    public void scoreDisplay(){
+        finalScore = GameWindow.finalescore;
+        finalScoreLabel.setText(String.valueOf(finalScore));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
