@@ -10,9 +10,15 @@
  */
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.Random;
+import java.io.InputStream;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+import java.util.concurrent.TimeUnit;
 
 
 public class GameWindow extends javax.swing.JFrame {
@@ -392,17 +398,21 @@ public class GameWindow extends javax.swing.JFrame {
                 break;
             case 3:
                 numStrikes.setText("X X X");
-                endGame();
                 
-        }   
+        }
+        InputStream incorrectMusic;
+        try{
+            incorrectMusic = new FileInputStream(new File("07042294.wav"));
+            AudioStream playsound = new AudioStream(incorrectMusic);
+            AudioPlayer.player.start(playsound);
+        }
+        catch (IOException e){
+            System.out.println("IO Exception");
+        }
+        if (strikes == 3){
+            endGame();
+        }
     }
-    
-    public void endGame(){
-        finalescore = score;
-        this.dispose();
-        EndWindow endingPage = new EndWindow();
-        endingPage.setVisible(true);
-    }  
     
     public void outputCorrectAnswer(){
         answerInput.setText("");
@@ -446,11 +456,37 @@ public class GameWindow extends javax.swing.JFrame {
        catch (FileNotFoundException e){
            System.out.println(e);
        }
+       
+       InputStream music;
+       try{
+           GameWindow f = new GameWindow();
+           music = new FileInputStream(new File ("07037425.wav"));
+           AudioStream play = new AudioStream(music);
+           AudioPlayer.player.start(play);
+           TimeUnit.SECONDS.sleep(3);
+           AudioPlayer.player.stop(play);
+       }
+       catch (IOException e){
+           System.out.println("IO Exception");
+       }
+       catch (InterruptedException e){
+           System.out.println("Interrupted Exception");
+       }
+       
        scorenumberlabel.setText(String.valueOf(score));
             if (score >= 1500){
                 endGame();
             }
     }
+    
+    public void endGame(){
+        finalescore = score;
+        this.dispose();
+        EndWindow endingPage = new EndWindow();
+        endingPage.setVisible(true);
+    }  
+    
+    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
