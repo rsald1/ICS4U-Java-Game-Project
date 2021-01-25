@@ -13,3 +13,4 @@
 2021 - 1 - 21 - finished the basics of game (functions comepletely, left is things on the new goals txt file)
 2021 - 1 - 22 - added array + new questions randomized - copied gameWindowOne class to change name with new questions, added end window with score displayed
 2021 - 1 - 24 - answer output on window corrected 
+2021 - 1 - 25 - Added in strike/correct answer sounds + added ability to loop/replay
