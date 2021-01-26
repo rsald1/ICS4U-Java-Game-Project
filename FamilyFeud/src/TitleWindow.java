@@ -128,18 +128,18 @@ public class TitleWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.exit(0);
+        System.exit(0); //close program
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void rulesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rulesButtonActionPerformed
         this.dispose(); 
-        RuleWindow rules = new RuleWindow();
+        RuleWindow rules = new RuleWindow(); //new object to open window
         rules.setVisible(true);
     }//GEN-LAST:event_rulesButtonActionPerformed
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
         this.dispose();
-        GameWindow questionOne = new GameWindow();
+        GameWindow questionOne = new GameWindow(); // new object to open window
         questionOne.setVisible(true);
     }//GEN-LAST:event_playButtonActionPerformed
 

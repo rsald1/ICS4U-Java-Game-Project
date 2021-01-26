@@ -136,12 +136,12 @@ public class EndWindow extends javax.swing.JFrame {
 
     private void playAgainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playAgainButtonActionPerformed
         this.dispose();
-        TitleWindow replay = new TitleWindow();
+        TitleWindow replay = new TitleWindow(); // new object to open window
         replay.setVisible(true);
     }//GEN-LAST:event_playAgainButtonActionPerformed
 
     private void quitbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitbuttonActionPerformed
-        System.exit(0);
+        System.exit(0); //close program
     }//GEN-LAST:event_quitbuttonActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -184,8 +184,8 @@ public class EndWindow extends javax.swing.JFrame {
     }
     
     public void scoreDisplay(){
-        finalScore = GameWindow.finalescore;
-        finalScoreLabel.setText(String.valueOf(finalScore));
+        finalScore = GameWindow.finalescore; //set var from gamewindow class to new var
+        finalScoreLabel.setText(String.valueOf(finalScore)); // display var
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

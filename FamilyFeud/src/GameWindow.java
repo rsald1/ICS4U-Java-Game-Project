@@ -18,12 +18,12 @@ import java.util.Random;
 import java.io.InputStream;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeUnit; 
 
 
 public class GameWindow extends javax.swing.JFrame {
 
-    static int finalescore;
+    static int finalescore; //int to go across classes
 
     /**
      * Creates new form GameWindowOne
@@ -34,10 +34,11 @@ public class GameWindow extends javax.swing.JFrame {
     int score;
     int strikes;
     public String[] questions = {"Bathroom", "Kitchen", "Bedroom", "Car"};
+    //array for each question 
     String question;
     int questionNumber;
     public static int finaleScore;
-    File QA = new File("");
+    File QA = new File(""); 
     boolean b;
     
     public GameWindow() {
@@ -47,6 +48,7 @@ public class GameWindow extends javax.swing.JFrame {
         question = "";
         questionNumber = 0;
         b = false;
+        //constructor to set values to 0 to start -- bc of possible play again loop
     }
 
     /**
@@ -254,7 +256,7 @@ public class GameWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
-        System.exit(0);
+        System.exit(0); //close program
     }//GEN-LAST:event_quitButtonActionPerformed
 
     private void answerInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answerInputActionPerformed
@@ -263,12 +265,12 @@ public class GameWindow extends javax.swing.JFrame {
 
     private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterButtonActionPerformed
         //String answer;
-        answer = answerInput.getText();
+        answer = answerInput.getText(); //get input
         boolean c;
-        c = searching(); 
+        c = searching(); //figures out if input is correct
         System.out.println(c);
         if (c){
-            outputCorrectAnswer();
+            outputCorrectAnswer(); 
         }
         else{
             incorrectAnswer();
@@ -323,13 +325,13 @@ public class GameWindow extends javax.swing.JFrame {
     
     public void questionChoice(){
         Random randomNum = new Random();
-        questionNumber = randomNum.nextInt(4);
+        questionNumber = randomNum.nextInt(4); //choose random number between 0-3
         System.out.println(questionNumber);
         question = questions[questionNumber];
-        System.out.println(question);
+        System.out.println(question); //prints for checking program works - for testing
         switch (questionNumber){
-            case 0:
-                questionLabel.setText("Things found in the Bathroom");
+            case 0: //sets questions based off randomized number
+                questionLabel.setText("Things found in the Bathroom"); 
                 break;
             case 1:
                 questionLabel.setText("Things found in the Kitchen");
@@ -344,8 +346,7 @@ public class GameWindow extends javax.swing.JFrame {
     }
     public boolean searching(){
        boolean a = false;
-       //File QA = new File("");
-       switch (questionNumber){
+       switch (questionNumber){ //depending on question it needs to open a dif answer file
            case 0: 
                QA = new File ("Q1Ainfo.txt");
                break;
@@ -363,33 +364,33 @@ public class GameWindow extends javax.swing.JFrame {
        try{
            Scanner reading = new Scanner(QA);
            while(!a){
-               String line = reading.nextLine();
+               String line = reading.nextLine();//read each line of file one at a time
                System.out.println(line);
-               p++;
+               p++; //keeps track of line number
                System.out.println(p);
-               a = line.equalsIgnoreCase(answer);
+               a = line.equalsIgnoreCase(answer); //check if input matches ignoring case 
                System.out.println(answer);
                System.out.println(a);
-               System.out.println("");
+               System.out.println(""); //prints for testing
                if (p>=5){
-                   return a;
+                   return a; // if gets to end of file w/out true return false
                }
                else{
                    continue;
                }
            }
-           return a;
+           return a; // a is whether input is t/f a correct answer
        }
-       catch (FileNotFoundException e){
+       catch (FileNotFoundException e){ //catch if it can't find the file
            System.out.println("File not found");
        }
-       return false;
+       return false; 
     }
     
     public void incorrectAnswer(){
-        answerInput.setText("");
-        strikes++;
-        switch(strikes){
+        answerInput.setText(""); //clears input field
+        strikes++; //keeps track of strikes
+        switch(strikes){ //outputs amount of strikes depending on above var
             case 1:
                 numStrikes.setText("X _ _");
                 break;
@@ -402,29 +403,29 @@ public class GameWindow extends javax.swing.JFrame {
         }
         InputStream incorrectMusic;
         try{
-            incorrectMusic = new FileInputStream(new File("07042294.wav"));
+            incorrectMusic = new FileInputStream(new File("07042294.wav")); //make object of file
             AudioStream playsound = new AudioStream(incorrectMusic);
-            AudioPlayer.player.start(playsound);
+            AudioPlayer.player.start(playsound); //play audio file
         }
-        catch (IOException e){
+        catch (IOException e){ //catches error
             System.out.println("IO Exception");
         }
-        if (strikes == 3){
+        if (strikes == 3){ //if get three strikes go to end method
             endGame();
         }
     }
     
     public void outputCorrectAnswer(){
-        answerInput.setText("");
+        answerInput.setText(""); //clears input field
         System.out.println("");
-        String getAnswerText = "";
+        String getAnswerText = ""; //sets empty string
        try{
         Scanner read = new Scanner(QA);
-        for (int i = 1; i<=5; i++){
-            getAnswerText = read.nextLine();
+        for (int i = 1; i<=5; i++){ //for the amount of lines
+            getAnswerText = read.nextLine(); //read answer
             System.out.println(getAnswerText);
-            if (p == i){
-                switch (p){
+            if (p == i){ // if the line number for the correct answer is the same number as the read line
+                switch (p){//set text to the read line
                     case 1:
                         answerOne.setText(getAnswerText);
                         score += 100;
@@ -443,7 +444,7 @@ public class GameWindow extends javax.swing.JFrame {
                         break;
                     case 5:
                         answerFive.setText(getAnswerText);
-                        score += 500;
+                        score += 500; //adds score for each answer
                         break;
                     
             }
@@ -453,36 +454,36 @@ public class GameWindow extends javax.swing.JFrame {
             }
        }
        }
-       catch (FileNotFoundException e){
+       catch (FileNotFoundException e){ //catch if can't find file
            System.out.println(e);
        }
        
        InputStream music;
        try{
            GameWindow f = new GameWindow();
-           music = new FileInputStream(new File ("07037425.wav"));
+           music = new FileInputStream(new File ("07037425.wav")); //create object for audio file
            AudioStream play = new AudioStream(music);
-           AudioPlayer.player.start(play);
-           TimeUnit.SECONDS.sleep(3);
-           AudioPlayer.player.stop(play);
+           AudioPlayer.player.start(play); //start audio
+           TimeUnit.SECONDS.sleep(3); //file longer than needed so timeunit plays for three secs
+           AudioPlayer.player.stop(play); //stops audio
        }
-       catch (IOException e){
+       catch (IOException e){ 
            System.out.println("IO Exception");
        }
-       catch (InterruptedException e){
+       catch (InterruptedException e){ //catch issue with timeunit
            System.out.println("Interrupted Exception");
        }
        
        scorenumberlabel.setText(String.valueOf(score));
-            if (score >= 1500){
+            if (score >= 1500){ //if score is the total possible amount send to end method
                 endGame();
             }
     }
     
     public void endGame(){
-        finalescore = score;
+        finalescore = score; //sets score to static var
         this.dispose();
-        EndWindow endingPage = new EndWindow();
+        EndWindow endingPage = new EndWindow(); //create object and open new window
         endingPage.setVisible(true);
     }  
     
