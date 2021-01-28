@@ -1,3 +1,14 @@
 testing notes:
 
 - repeat answer? handle to strike? (if time) 
+
+
+
+jan 23
+- issues with output for correct answer only displaying first questions answers
+
+jan 25 
+- audio not running
+- wait() not working the way intended - syncronization errors (use timeUnit instead) 
+
+
